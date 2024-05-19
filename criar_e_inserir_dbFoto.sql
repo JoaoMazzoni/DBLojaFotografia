@@ -1,9 +1,3 @@
-IF NOT EXISTS(
-	SELECT name FROM sys.databases
-	WHERE name = 'dbFoto'
-)
-CREATE DATABASE dbFoto;
-
 USE dbFoto;
 
 -- Tabela Cliente
@@ -79,7 +73,7 @@ CREATE TABLE ClienteEndereco (
 
     CONSTRAINT PkClienteEndereco PRIMARY KEY (idCliente, idEndereco),
     CONSTRAINT FkCliente FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente),
-    CONSTRAINT FkEndereco FOREIGN KEY (idEndereco) REFERENCES Endereco(idEndereco)
+    CONSTRAINT FkEnderecoC FOREIGN KEY (idEndereco) REFERENCES Endereco(idEndereco)
 );
 
 -- Inserindo dados na tabela ClienteEndereco
@@ -98,7 +92,7 @@ CREATE TABLE FuncionarioEndereco (
 
     CONSTRAINT PkFuncionarioEndereco PRIMARY KEY (idFuncionario, idEndereco),
     CONSTRAINT FkFuncionario FOREIGN KEY (idFuncionario) REFERENCES Funcionario(idFuncionario),
-    CONSTRAINT FkEndereco FOREIGN KEY (idEndereco) REFERENCES Endereco(idEndereco)
+    CONSTRAINT FkEnderecoF FOREIGN KEY (idEndereco) REFERENCES Endereco(idEndereco)
 );
 
 -- Inserindo dados na tabela FuncionarioEndereco
@@ -117,7 +111,7 @@ CREATE TABLE PessoaFisica (
 	sexo CHAR,
 
 	CONSTRAINT PkPessoaFisica PRIMARY KEY (idCliente, cpf),
-    CONSTRAINT FkCliente FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
+    CONSTRAINT FkClientePF FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
 );
 
 -- Inserindo dados na tabela PessoaFisica
@@ -136,7 +130,7 @@ CREATE TABLE PessoaJuridica (
 	nomeResponsavel VARCHAR (100) NOT NULL,
 
 	CONSTRAINT PkPessoaJuridica PRIMARY KEY (idCliente, cnpj),
-    CONSTRAINT FkCliente FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
+    CONSTRAINT FkClientePJ FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
 );
 
 -- Inserindo dados na tabela PessoaJuridica
@@ -207,8 +201,8 @@ CREATE TABLE Venda (
 	condicaoVenda VARCHAR (10) NOT NULL,
 
 	CONSTRAINT PkVenda PRIMARY KEY (idVenda),
-    CONSTRAINT FkCliente FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente),
-	CONSTRAINT FkFuncionario FOREIGN KEY (idFuncionario) REFERENCES Funcionario(idFuncionario)
+    CONSTRAINT FkClienteV FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente),
+	CONSTRAINT FkFuncionarioV FOREIGN KEY (idFuncionario) REFERENCES Funcionario(idFuncionario)
 );
 
 -- Inserindo dados na tabela Venda
@@ -227,7 +221,7 @@ CREATE TABLE ItemVenda (
 
 	CONSTRAINT PkItemVenda PRIMARY KEY (idVenda, idProduto),
     CONSTRAINT FkVenda FOREIGN KEY (idVenda) REFERENCES Venda(idVenda),
-    CONSTRAINT FkProduto FOREIGN KEY (idProduto) REFERENCES Produto(idProduto)
+    CONSTRAINT FkProdutoIV FOREIGN KEY (idProduto) REFERENCES Produto(idProduto)
 );
 
 -- Inserindo dados na tabela ItemVenda
