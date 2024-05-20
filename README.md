@@ -1,5 +1,7 @@
 # Exercício de Modelagem Entidade-Relacionamento
 
+**Dupla:** Gustavo Vono e João Pedro Tamanini Mazzoni
+
 ## Assunto: Loja de Fotografia 
 
 A **Loja de Fotografia** deseja informatizar seu sistema de controle de vendas. Os seguintes dados foram definidos pelo proprietário:
